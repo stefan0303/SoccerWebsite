@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc63e20d563649f5931ae118ac1742b5" Name="Diagram1">
+        <EntityTypeShape EntityType="soccerModel.Colour" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="soccerModel.Competition" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="soccerModel.Country" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="soccerModel.Game" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="soccerModel.sysdiagram" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="soccerModel.Team" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="soccerModel.Town" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="soccerModel.FK_Team_PrimaryKitColor_ui" ManuallyRouted="false" />
+        <AssociationConnector Association="soccerModel.FK_Team_SecondaryKitColour_ui" ManuallyRouted="false" />
+        <AssociationConnector Association="soccerModel.FK_Team_Competition_ui" ManuallyRouted="false" />
+        <AssociationConnector Association="soccerModel.FK__Town__country__ui" ManuallyRouted="false" />
+        <AssociationConnector Association="soccerModel.FK_Games_AwayTeam_ui" ManuallyRouted="false" />
+        <AssociationConnector Association="soccerModel.FK_Games_HomeTeam_ui" ManuallyRouted="false" />
+        <AssociationConnector Association="soccerModel.FK_Team_Town_ui" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
