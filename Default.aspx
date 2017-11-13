@@ -2,5 +2,5 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    
+    <h2>Choose the home page of site TO DO!</h2>
 </asp:Content>

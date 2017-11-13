@@ -8,17 +8,17 @@ using System.Web;
 /// </summary>
 public class ImportCompetition : System.Web.UI.Page
 {
-    private string data;
+    private string competitionName;
     public ImportCompetition(string dataArgs)
     {
-        this.data = dataArgs;
+        this.competitionName = dataArgs;
     }
     public void Execute()
     {
         Competition competition = new Competition();
         soccerContext context = new soccerContext();
         competition.ui = Guid.NewGuid();
-        competition.Name = data;
+        competition.Name = competitionName;
         try
         {
             context.Competitions.Add(competition);

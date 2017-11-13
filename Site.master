@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" >
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -45,6 +45,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
                     </button>
 
                     <%--  <a class="navbar-brand" runat="server" href="~/">Application </a>--%>
@@ -53,8 +54,9 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/ImportData">Import Data</a></li>
-                        <li><a runat="server" href="~/">Search in Data</a></li>
-
+                        <li><a runat="server" href="~/ImportTeams">Import Teams</a></li>
+                        <li><a runat="server" href="~/SearchData">Search in Data</a></li>
+                         
 
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

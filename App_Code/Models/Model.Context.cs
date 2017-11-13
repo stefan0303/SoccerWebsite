@@ -13,6 +13,8 @@ using System.Data.Entity.Infrastructure;
 
 public partial class soccerContext : DbContext
 {
+    internal object colourOne;
+
     public soccerContext()
         : base("name=soccerContext")
     {

@@ -3,6 +3,6 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-      <h2>Search Data</h2>
+     <h2>Search Data</h2>
     </div>
 </asp:Content>

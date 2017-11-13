@@ -4,20 +4,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 
-/// <summary>
-/// Summary description for ImportCountry
-/// </summary>
 public class ImportCountry
 {
-    private string data;
+    private string countryName;
     public ImportCountry(string dataArgs)
     {
-        this.data = dataArgs;
+        this.countryName = dataArgs;
     }
     public void Execute()
     {
         Country country = new Country();
-        country.Name = data;
+        country.Name = countryName;
         country.ui = Guid.NewGuid();
         soccerContext context = new soccerContext();
         try

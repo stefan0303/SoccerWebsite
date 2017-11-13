@@ -6,15 +6,15 @@ using SoccerWebsite;
 
 public class ImportColour : System.Web.UI.Page
 {
-    private string data;
+    private string colourName;
     public ImportColour(string dataArgs)
     {
-        this.data = dataArgs;
+        this.colourName = dataArgs;
     }
     public void Execute()
     {
 
-        int number = (int)((EnumColor)Enum.Parse(typeof(EnumColor), this.data));
+        int number = (int)((EnumColor)Enum.Parse(typeof(EnumColor), this.colourName));
 
         Colour colour = new Colour();
         colour.Name = number;

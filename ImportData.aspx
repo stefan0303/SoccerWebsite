@@ -20,7 +20,15 @@
         </div>
         <div class="row-sm-4">
            <h5>Import Country:</h5> 
-            <input type="text" name="country" id="inputColour" placeholder="Type ColourName" />
+            <input type="text" name="country" id="country" placeholder="Type ColourName" />
+            <input type="submit" value="Submit" />
+        </div>
+         <div class="row-sm-4">
+           <h5>Import Town:</h5> 
+             <h6>Select Country from list:</h6>
+              <asp:DropDownList ID="DropDownCountry"  name="countryInput" runat="server" Width="100px">
+            </asp:DropDownList>
+            <input type="text" name="town" id="town" placeholder="Type Town Name" />
             <input type="submit" value="Submit" />
         </div>
     </div>
