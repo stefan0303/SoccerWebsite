@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,13 +17,17 @@ public class ImportCountry
         Country country = new Country();
         country.Name = countryName;
         country.ui = Guid.NewGuid();
-        soccerContext context = new soccerContext();
+       
         try
         {
-            context.Countries.Add(country);
-            context.SaveChanges();
+            using (soccerContext context = new soccerContext())
+            {
+                context.Countries.Add(country);
+                context.SaveChanges();
+            }
+          
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             
             throw new System.InvalidOperationException("There is such country in data");

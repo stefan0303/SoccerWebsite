@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,8 +24,8 @@ public partial class ImportData : Page
             //Vzima vsichki formi dori koito ne mi triabvat! vzima i praznite poleta
 
             //string[] controls = Request.Form.AllKeys.Where(c=>c== "countryInput" || c=="town").Reverse().Take(7).ToArray();//take only forms we need from page ??? can this be done in different way
-            string[] controls = Request.Form.AllKeys.Reverse().Take(5).ToArray();//take only forms we need from page ??? can this be done in different way
-
+            string[] controls = Request.Form.AllKeys.Reverse().Take(15).ToArray();//take only forms we need from page ??? can this be done in different way
+           
             // string countryName = String.Format("{0}", Request.Form["ctl00$MainContent$DropDownCountry"]);*///get argument in dropDown menu to add later town in data
 
             //IS there need to import Colors in data from here?!
@@ -44,11 +45,8 @@ public partial class ImportData : Page
                     string countryName = String.Format("{0}", Request.Form["countryInput"]); ///get argument in dropDown menu to add later town in data
                     dataArgs = new string[] { data, countryName };
                     CommandDispatcher service = new CommandDispatcher(control, dataArgs);
-                }
-               
+                }             
             }
-
-
         }
     }
 }

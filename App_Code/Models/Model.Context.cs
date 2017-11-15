@@ -7,29 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-
-public partial class soccerContext : DbContext
+namespace Models
 {
-    internal object colourOne;
-
-    public soccerContext()
-        : base("name=soccerContext")
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    
+    public partial class soccerContext : DbContext
     {
+        public soccerContext()
+            : base("name=soccerContext")
+        {
+        }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<Colour> Colours { get; set; }
+        public virtual DbSet<Competition> Competitions { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Town> Towns { get; set; }
     }
-
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        throw new UnintentionalCodeFirstException();
-    }
-
-    public virtual DbSet<Colour> Colours { get; set; }
-    public virtual DbSet<Competition> Competitions { get; set; }
-    public virtual DbSet<Country> Countries { get; set; }
-    public virtual DbSet<Game> Games { get; set; }
-    public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-    public virtual DbSet<Team> Teams { get; set; }
-    public virtual DbSet<Town> Towns { get; set; }
 }

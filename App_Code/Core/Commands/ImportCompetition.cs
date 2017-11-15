@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,13 +17,17 @@ public class ImportCompetition : System.Web.UI.Page
     public void Execute()
     {
         Competition competition = new Competition();
-        soccerContext context = new soccerContext();
+        
         competition.ui = Guid.NewGuid();
         competition.Name = competitionName;
         try
         {
-            context.Competitions.Add(competition);
-            context.SaveChanges();
+            using (soccerContext context = new soccerContext())
+            {
+                context.Competitions.Add(competition);
+                context.SaveChanges();
+            }
+            
             //Working!
         }
         catch (Exception)

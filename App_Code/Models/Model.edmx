@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="soccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="soccerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Colour">
           <Key>
             <PropertyRef Name="ui" />
@@ -40,6 +40,7 @@
           <Property Name="HomeTeamGoals" Type="int" Nullable="false" />
           <Property Name="AwayTeamGoals" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Competition_ui" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -93,6 +94,18 @@
             </Principal>
             <Dependent Role="Games">
               <PropertyRef Name="AwayTeam_ui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Games_Competition_ui">
+          <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
+          <End Role="Games" Type="Self.Games" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competition">
+              <PropertyRef Name="ui" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="Competition_ui" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -172,6 +185,10 @@
             <End Role="Team" EntitySet="Team" />
             <End Role="Games" EntitySet="Games" />
           </AssociationSet>
+          <AssociationSet Name="FK_Games_Competition_ui" Association="Self.FK_Games_Competition_ui">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
           <AssociationSet Name="FK_Games_HomeTeam_ui" Association="Self.FK_Games_HomeTeam_ui">
             <End Role="Team" EntitySet="Team" />
             <End Role="Games" EntitySet="Games" />
@@ -193,8 +210,7 @@
             <End Role="Team" EntitySet="Team" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="soccerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -216,6 +232,7 @@
           <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Teams" Relationship="Self.FK_Team_Competition_ui" FromRole="Competition" ToRole="Team" />
+          <NavigationProperty Name="Games" Relationship="soccerModel.FK_Games_Competition_ui" FromRole="Competition" ToRole="Game" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -239,6 +256,8 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Team" Relationship="Self.FK_Games_AwayTeam_ui" FromRole="Games" ToRole="Team" />
           <NavigationProperty Name="Team1" Relationship="Self.FK_Games_HomeTeam_ui" FromRole="Games" ToRole="Team" />
+          <Property Name="Competition_ui" Type="Guid" />
+          <NavigationProperty Name="Competition" Relationship="soccerModel.FK_Games_Competition_ui" FromRole="Game" ToRole="Competition" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -399,7 +418,23 @@
             <End Role="Town" EntitySet="Towns" />
             <End Role="Team" EntitySet="Teams" />
           </AssociationSet>
+          <AssociationSet Name="FK_Games_Competition_ui" Association="soccerModel.FK_Games_Competition_ui">
+            <End Role="Competition" EntitySet="Competitions" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Games_Competition_ui">
+          <End Type="soccerModel.Competition" Role="Competition" Multiplicity="0..1" />
+          <End Type="soccerModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competition">
+              <PropertyRef Name="ui" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Competition_ui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -436,6 +471,7 @@
           <EntitySetMapping Name="Games">
             <EntityTypeMapping TypeName="soccerModel.Game">
               <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="Competition_ui" ColumnName="Competition_ui" />
                 <ScalarProperty Name="ui" ColumnName="ui" />
                 <ScalarProperty Name="C_id" ColumnName="_id" />
                 <ScalarProperty Name="HomeTeam_ui" ColumnName="HomeTeam_ui" />

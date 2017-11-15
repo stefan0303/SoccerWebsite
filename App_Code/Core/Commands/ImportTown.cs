@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ public class ImportTown
 {
     private string name;
     private string countryName;
+
     public ImportTown(string townName,string countryN)
     {
         this.name = townName;
@@ -23,7 +25,8 @@ public class ImportTown
         try
         {
             Country country = context.Countries.FirstOrDefault(c => c.Name == countryName);
-            country.Towns.Add(town);//Add town to this country
+            /* country.Towns.Add(town);*///Add town to this country
+            town.Country_ui = country.ui;
             context.SaveChanges();
         }
         catch (Exception)

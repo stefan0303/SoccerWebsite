@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SoccerWebsite;
+using Models;
 
 public class ImportColour : System.Web.UI.Page
 {
@@ -20,11 +21,15 @@ public class ImportColour : System.Web.UI.Page
         colour.Name = number;
         Guid guid = Guid.NewGuid();
         colour.ui = guid;
-        soccerContext context = new soccerContext();
+        
         try
         {
-            context.Colours.Add(colour);
-            context.SaveChanges();
+            using (soccerContext context = new soccerContext())
+            {
+                context.Colours.Add(colour);
+                context.SaveChanges();
+            }
+           
         }
         catch (Exception)
         {

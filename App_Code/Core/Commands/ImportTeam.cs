@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,11 +34,12 @@ public class ImportTeam
         {
 
             Competition competition = context.Competitions.FirstOrDefault(c => c.Name == competitionName);
-            competition.Teams.Add(team);
+            //competition.Teams.Add(team);
 
             Town town = context.Towns.FirstOrDefault(t => t.Name == townName);
-            town.Teams.Add(team);
-
+            //town.Teams.Add(team);
+            team.Competition_ui = competition.ui;
+            team.Town_ui = town.ui;
             int idFirst = int.Parse(primaryColour);
             int idSecond = int.Parse(secondaryColour);
             Colour colourOne= context.Colours.FirstOrDefault(c => c.Name == idFirst);
@@ -45,8 +47,18 @@ public class ImportTeam
          
             team.Colour= colourOne;           
             team.Colour1= colourTwo;
-         
-            context.SaveChanges();
+
+            try
+            {
+                context.Teams.Add(team);
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw new ArgumentException("There is such team in data");
+            }
+          
         }
 
         // Colour colour = context.Colours.FirstOrDefault(c => c.Name == 1);
