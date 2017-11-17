@@ -14,7 +14,7 @@ public partial class ImportData : Page
         {
             //Make the dropDown List of Counries names from Data
             DropDownCountry.DataSource = context.Countries.OrderBy(c => c.Name).ToList();
-            DropDownCountry.DataTextField = "name";//is there way to change the control of "ctl00$MainContent$DropDownCountry"          
+            DropDownCountry.DataTextField = "name";    
             DropDownCountry.DataBind();
 
         }
@@ -28,7 +28,7 @@ public partial class ImportData : Page
            
             // string countryName = String.Format("{0}", Request.Form["ctl00$MainContent$DropDownCountry"]);*///get argument in dropDown menu to add later town in data
 
-            //IS there need to import Colors in data from here?!
+            
             foreach (var control in controls)
             {
                 string data = String.Format("{0}", Request.Form[control]);

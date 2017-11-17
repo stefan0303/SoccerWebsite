@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Import Data" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="ImportData.aspx.cs" Inherits="ImportData" %>
 
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="container">
         <%--<div class="row-sm-3">
             <h5>Import Colour:</h5>
@@ -32,7 +30,5 @@
             <input type="text" name="town" id="town" placeholder="Type Town Name" runat="server" />
             <input type="submit" name="tow" value="Submit" />
         </div>
-    </div>
-  
 </asp:Content>
 
