@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for EnumColor
-/// </summary>
-public enum EnumColor :int
+public enum EnumColor : int
 {
-    red=1,
-    blue=2,
-    green=3,
-    yellow=4
-
+    White = 1,
+    Yellow = 2,
+    Pink = 3,
+    Red = 4,
+    Silver = 5,
+    Gray = 6,
+    Olive = 7,
+    Purple = 8,
+    Maroon = 9,
+    Aqua = 10,
+    Lime = 11,
+    Teal = 12,
+    Green = 13,
+    Blue = 14,
+    Navy = 15,
+    Black = 16
 }
 public static class Enumeration//Make it in other place
 {

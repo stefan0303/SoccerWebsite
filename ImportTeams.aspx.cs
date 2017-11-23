@@ -52,7 +52,7 @@ public partial class ImportTeams : System.Web.UI.Page
             string nameOfTeam = Request.Form["team"];
             string[] controls = Request.Form.AllKeys.Reverse().Take(5).ToArray();
             if (nameOfTeam != null && nameOfTeam != "")
-            {//
+            {
                 string competition = Request.Form["ctl00$MainContent$DropDownCompetitions"];
                 string town = Request.Form["ctl00$MainContent$DropDownTowns"];
                 //there can be the same primary and secondary kit colour
@@ -89,5 +89,5 @@ public partial class ImportTeams : System.Web.UI.Page
             }
         }
     }
-
+   
 }

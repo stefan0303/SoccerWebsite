@@ -25,7 +25,7 @@ public class ImportTown
         try
         {
             Country country = context.Countries.FirstOrDefault(c => c.Name == countryName);
-            /* country.Towns.Add(town);*///Add town to this country
+            country.Towns.Add(town);//Add town to this country
             town.Country_ui = country.ui;
             context.SaveChanges();
         }

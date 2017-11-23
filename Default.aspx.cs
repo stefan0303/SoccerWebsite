@@ -11,28 +11,20 @@ public partial class _Default : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //SQL CONNECTION
-        //SqlConnection sql = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-        //sql.Open();
+        //Way to import Colors Dont need it now
 
-        //SqlCommand cmd = sql.CreateCommand();
+        //if (Request.Form.Count > 0)
+        //{
+        //    //Every button is working only for data in that field
+        //    string[] submitControl = Request.Form.AllKeys.Where(k => k == "submitColor").ToArray();
+        //    //string[] nameOfColor = Request.Form.AllKeys.Where(k => k == "color").ToArray();
+        //    if (Request.Form.Count > 0)
+        //    {
+        //      string  data = String.Format("{0}", Request.Form["color"]);
+        //      string[]  dataArgs = new string[] { data };
+        //      CommandDispatcher  service = new CommandDispatcher("colours", dataArgs);
 
-        //cmd.CommandType = System.Data.CommandType.Text;
-        //Guid guid = Guid.NewGuid();
-        //cmd.CommandText = $"insert into Country values ('{guid}','Varna')";
-        //cmd.ExecuteNonQuery(); 
-        //Response.Write("test213");
-        //Response.End();
-
-        //CONTEXT
-
-        //SoccerContext context = new SoccerContext();
-      
-        //Guid guid = Guid.NewGuid();
-        //Country country = new Country();
-        //country.ui = guid;
-        //country.Name = "testAdo.NEt3";
-        //context.Countries.Add(country);
-        //context.SaveChanges();
+        //    }
+        //}
     }
 }

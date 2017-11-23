@@ -8,45 +8,45 @@ using System.Web.UI.WebControls;
 
 public partial class ImportData : Page
 {
+    private string data;
+    private string[] dataArgs;
+    private CommandDispatcher service;
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         using (soccerContext context = new soccerContext())
         {
             //Make the dropDown List of Counries names from Data
             DropDownCountry.DataSource = context.Countries.OrderBy(c => c.Name).ToList();
-            DropDownCountry.DataTextField = "name";    
+            DropDownCountry.DataTextField = "name";
             DropDownCountry.DataBind();
-
         }
         if (Request.Form.Count > 0)
         {
+            //Every button is working only for data in that field
+            string[] submitControl = Request.Form.AllKeys.Where(k => k == "competitionSubmit" && k != "" || (k == "countrySubmit" && k != "") || (k == "townSubmit" && k != "")).ToArray();
 
-            //Vzima vsichki formi dori koito ne mi triabvat! vzima i praznite poleta
-
-            //string[] controls = Request.Form.AllKeys.Where(c=>c== "countryInput" || c=="town").Reverse().Take(7).ToArray();//take only forms we need from page ??? can this be done in different way
-            string[] controls = Request.Form.AllKeys.Reverse().Take(15).ToArray();//take only forms we need from page ??? can this be done in different way
-           
-            // string countryName = String.Format("{0}", Request.Form["ctl00$MainContent$DropDownCountry"]);*///get argument in dropDown menu to add later town in data
-
-            
-            foreach (var control in controls)
+            //Todo check is the string empty make first letter uppercase no numbers!
+            switch (submitControl[0])
             {
-                string data = String.Format("{0}", Request.Form[control]);
-                string[] dataArgs = new string[] { data };
-
-                //can make a regex for dataArgs (no spaces in words, no numbers, make first letter Uppercase for Competition,Country and Town)
-                if (dataArgs.Length > 0 && control != "town" && data != "")
-                {
-                    CommandDispatcher service = new CommandDispatcher(control, dataArgs);
-
-                }
-                if (control == "town" && dataArgs[0] != "")
-                {
-                    string countryName = String.Format("{0}", Request.Form["countryInput"]); ///get argument in dropDown menu to add later town in data
+                case "competitionSubmit":
+                    data = String.Format("{0}", Request.Form["competition"]);
+                    dataArgs = new string[] { data };
+                    service = new CommandDispatcher("competition", dataArgs);
+                    break;
+                case "countrySubmit":
+                    data = String.Format("{0}", Request.Form["country"]);
+                    dataArgs = new string[] { data };
+                    service = new CommandDispatcher("country", dataArgs);
+                    break;
+                case "townSubmit":
+                    data = String.Format("{0}", Request.Form["town"]);
+                    string countryName = String.Format("{0}", Request.Form["ctl00$MainContent$DropDownCountry"]);
                     dataArgs = new string[] { data, countryName };
-                    CommandDispatcher service = new CommandDispatcher(control, dataArgs);
-                }             
+                    service = new CommandDispatcher("town", dataArgs);
+                    break;
             }
+
         }
     }
 }

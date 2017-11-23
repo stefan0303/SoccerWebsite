@@ -9,12 +9,11 @@
                 <asp:DropDownList ID="DropDownListCompetitions" OnSelectedIndexChanged="DropDownList_SelectedIndexChaged" runat="server" AutoPostBack="True" DataValueField="name" name="competitions" Width="100px">
                 </asp:DropDownList>
             </div>
-            <div>
+         <%--   <div>
                 <table class="table" style="width: 50%">
                     <tr>
                         <th>Posssition</th>
                         <th>Team</th>
-                        <%--<th>Matches</th>--%>
                         <th>Wins</th>
                         <th>Draws</th>
                         <th>Loses</th>
@@ -25,23 +24,21 @@
                
 
                 </table>
-            </div>
+            </div>--%>
             
                 <table>
                     <tr style="background-color: #004080; color: White;">
                        <th>Posssition</th>
-                        <th>Team</th>
-                        <th>Matches</th>
+                        <th>Team</th>                       
                         <th>Wins</th>
                         <th>Draws</th>
                         <th>Loses</th>
                         <th>Goal Difference</th>
                         <th>Points</th>
                     </tr>
-
                     <%=getWhileLoopData()%>
                 </table>
-            <
+
 
         </div>
     </div>
