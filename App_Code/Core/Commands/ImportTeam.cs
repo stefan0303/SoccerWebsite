@@ -1,11 +1,9 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 
-public class ImportTeam
+internal class ImportTeam : IImport
 {
     private string teamName;
     private string competitionName;
@@ -25,10 +23,11 @@ public class ImportTeam
 
     public void Execute()
     {
-        Team team = new Team();
-        team.Name = teamName;
-        team.ui = Guid.NewGuid();
-
+        Team team = new Team
+        {
+            Name = teamName,
+            ui = Guid.NewGuid()
+        };
 
         using (soccerContext context = new soccerContext())
         {
@@ -60,9 +59,6 @@ public class ImportTeam
             }
           
         }
-
-        // Colour colour = context.Colours.FirstOrDefault(c => c.Name == 1);
-
     }
 
 }

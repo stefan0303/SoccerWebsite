@@ -1,13 +1,8 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-/// <summary>
-/// Summary description for ImportCompetition
-/// </summary>
-public class ImportCompetition : System.Web.UI.Page
+
+internal class ImportCompetition : System.Web.UI.Page, IImport
 {
     private string competitionName;
     public ImportCompetition(string dataArgs)
@@ -16,10 +11,11 @@ public class ImportCompetition : System.Web.UI.Page
     }
     public void Execute()
     {
-        Competition competition = new Competition();
-        
-        competition.ui = Guid.NewGuid();
-        competition.Name = competitionName;
+        Competition competition = new Competition
+        {
+            ui = Guid.NewGuid(),
+            Name = competitionName
+        };
         try
         {
             using (soccerContext context = new soccerContext())
@@ -27,7 +23,7 @@ public class ImportCompetition : System.Web.UI.Page
                 context.Competitions.Add(competition);
                 context.SaveChanges();
             }
-            
+
             //Working!
         }
         catch (Exception)
@@ -35,7 +31,7 @@ public class ImportCompetition : System.Web.UI.Page
 
             throw new ArgumentException("There is such Competition name!");
         }
-       
+
 
     }
 }

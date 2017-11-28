@@ -1,11 +1,7 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
 
-public class ImportCountry
+internal class ImportCountry: IImport
 {
     private string countryName;
     public ImportCountry(string dataArgs)
@@ -14,10 +10,12 @@ public class ImportCountry
     }
     public void Execute()
     {
-        Country country = new Country();
-        country.Name = countryName;
-        country.ui = Guid.NewGuid();
-       
+        Country country = new Country
+        {
+            Name = countryName,
+            ui = Guid.NewGuid()
+        };
+
         try
         {
             using (soccerContext context = new soccerContext())

@@ -1,11 +1,8 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-
-public class ImportTown
+internal class ImportTown : IImport
 {
     private string name;
     private string countryName;
@@ -17,10 +14,12 @@ public class ImportTown
     }
     public void Execute()
     {
-        Town town = new Town();
-        town.Name = name;
-        town.ui = Guid.NewGuid();
-      
+        Town town = new Town
+        {
+            Name = name,
+            ui = Guid.NewGuid()
+        };
+
         soccerContext context = new soccerContext();
         try
         {

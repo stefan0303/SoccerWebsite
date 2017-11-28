@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using SoccerWebsite;
 
 
 public class CommandDispatcher
@@ -14,7 +10,7 @@ public class CommandDispatcher
         {
             case "team":
 
-                ImportTeam importTeam = new ImportTeam(dataArgs[0], dataArgs[1],
+                IImport importTeam = new ImportTeam(dataArgs[0], dataArgs[1],
                     dataArgs[2], dataArgs[3], dataArgs[4]);
                 importTeam.Execute();
                 break;
@@ -25,9 +21,9 @@ public class CommandDispatcher
                 string awayTeam = dataArgs[2];
                 int homeTeamGoals = int.Parse(dataArgs[3]);
                 int awayTeamGoals = int.Parse(dataArgs[4]);
-                DateTime dateOfGame = DateTime.Parse(dataArgs[5]);
+                DateTime dateOfGame =       DateTime.Parse(dataArgs[5]);
 
-                ImportGames importGames = new ImportGames(competition, homeTeam, awayTeam,
+                IImport importGames = new ImportGames(competition, homeTeam, awayTeam,
                     homeTeamGoals, awayTeamGoals, dateOfGame);
                 importGames.Execute();
                 break;
@@ -36,25 +32,26 @@ public class CommandDispatcher
 
                 string townName = dataArgs[0];
                 string countryName = dataArgs[1];
-                ImportTown importTown = new ImportTown(townName, countryName);
+                IImport importTown = new ImportTown(townName, countryName);
                 importTown.Execute();
                 break;
 
             case "country":
-                ImportCountry importCountry = new ImportCountry(dataArgs[0]);
+                IImport importCountry = new ImportCountry(dataArgs[0]);
                 importCountry.Execute();
                 break;
 
             case "competition":
-                ImportCompetition importCompetition = new ImportCompetition(dataArgs[0]);
+                IImport importCompetition = new ImportCompetition(dataArgs[0]);
                 importCompetition.Execute();
+               
                 break;
 
             case "colours":
-                ImportColour importColours = new ImportColour(dataArgs[0]);
+                IImport importColours = new ImportColour(dataArgs[0]);
                 importColours.Execute();
                 break;
-                //Query
+         
         }
 
 

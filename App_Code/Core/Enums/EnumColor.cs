@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 public enum EnumColor : int
 {
@@ -22,7 +20,7 @@ public enum EnumColor : int
     Navy = 15,
     Black = 16
 }
-public static class Enumeration//Make it in other place
+public static class Enumeration
 {
     public static IDictionary<int, string> GetAll<TEnum>() where TEnum : struct
     {

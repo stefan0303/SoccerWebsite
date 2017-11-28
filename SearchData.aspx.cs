@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Configuration;
 using System.Web.UI.WebControls;
 using Models;
 
@@ -41,7 +38,7 @@ public partial class SearchData : Page
         {
             //List of teams in that competition
             Competition competition = context.Competitions.FirstOrDefault(c => c.Name == newCompetitionValue);
-            if (competition != null)//just for test this if construction
+            if (competition != null)
             {
                 teams = context.Teams.Where(t => t.Competition.Name == newCompetitionValue).ToList();//List of teams in this Competition
                 games = context.Games.Where(g => g.Competition_ui == competition.ui).ToList();//List of games in this competition

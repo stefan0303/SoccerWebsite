@@ -56,8 +56,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/ImportData">Import Data</a></li>
+                        <li><a runat="server" href="~/">Import Data</a></li>
+                        <%--<li><a runat="server" href="~/ImportData">Import Data</a></li>--%>
                         <li><a runat="server" href="~/ImportTeams">Import Teams</a></li>
                         <li><a runat="server" href="~/Games">Game</a></li>
                         <li><a runat="server" href="~/SearchData">Search in Data</a></li>

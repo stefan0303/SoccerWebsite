@@ -1,11 +1,10 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 
-public class ImportGames
+
+internal class ImportGames : IImport
 {
     private string competition;
     private string homeTeam;
@@ -26,8 +25,10 @@ public class ImportGames
     }
     public void Execute()
     {
-        Game game = new Game();
-        game.ui = Guid.NewGuid();
+        Game game = new Game
+        {
+            ui = Guid.NewGuid()
+        };
 
         using (soccerContext context = new soccerContext())
         {

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using SoccerWebsite;
 using Models;
 
-public class ImportColour : System.Web.UI.Page
+internal class ImportColour : System.Web.UI.Page, IImport
 {
     private string colourName;
     public ImportColour(string dataArgs)
@@ -17,8 +13,10 @@ public class ImportColour : System.Web.UI.Page
 
         int number = (int)((EnumColor)Enum.Parse(typeof(EnumColor), this.colourName));
 
-        Colour colour = new Colour();
-        colour.Name = number;
+        Colour colour = new Colour
+        {
+            Name = number
+        };
         Guid guid = Guid.NewGuid();
         colour.ui = guid;
         

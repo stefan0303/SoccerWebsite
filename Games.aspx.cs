@@ -1,17 +1,16 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Games : System.Web.UI.Page
 {
     private string newValue;
+  
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      
         using (soccerContext context = new soccerContext())
         {
 
@@ -36,7 +35,7 @@ public partial class Games : System.Web.UI.Page
             DropDownListAwayTeam.Items.Insert(0, new ListItem(String.Empty, String.Empty));
 
         }
-        //ToDo Check is all data is correct
+      
         string[] controls = Request.Form.AllKeys.Reverse().Take(50).ToArray();
         if (Request.Form.Count > 0 && !controls.Any(c => c == "") && controls[0] == "submitGames")
         {
@@ -48,7 +47,7 @@ public partial class Games : System.Web.UI.Page
             if (homeTeam==awayTeam)
             {
                 throw new ArgumentException("Home and Away team cannot have same name!");
-                //Response.Write("error");
+             
             }
             string homeTeamGoals = Request.Form["ctl00$MainContent$DropDownListHomeTeamGoals"];
             string awayTeamGoals = Request.Form["ctl00$MainContent$DropDownListAwayTeamGoals"];
@@ -56,8 +55,7 @@ public partial class Games : System.Web.UI.Page
             {
                 throw new ArgumentException("Home team and Away team goals can not be empty!");
             }
-            string dateOfGame = Request.Form["ctl00$MainContent$TxtDob"];
-            // DateTime date = DateTime.Parse(dateOfGame);
+            string dateOfGame = Request.Form["ctl00$MainContent$TxtDob"];          
 
             string[] dataArgs = new string[] { competition, homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, dateOfGame };
             CommandDispatcher commandDispatcher = new CommandDispatcher("game", dataArgs);
