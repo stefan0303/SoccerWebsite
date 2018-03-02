@@ -27,6 +27,15 @@ public partial class SearchData : Page
 
         }
     }
+
+        protected void DropDownList_SelectedIndexChaged(object sender, EventArgs e)
+    {
+
+        DropDownListCompetitions.SelectedValue = newCompetitionValue;
+        DropDownListCompetitions.DataBind();
+
+
+    }
     public string getWhileLoopData()
     {
         string htmlStr = "";
@@ -145,17 +154,5 @@ public partial class SearchData : Page
     }
    
 
-    protected void DropDownList_SelectedIndexChaged(object sender, EventArgs e)
-    {
-
-        DropDownListCompetitions.SelectedValue = newCompetitionValue;
-        DropDownListCompetitions.DataBind();
-
-        using (soccerContext context = new soccerContext())
-        {
-
-
-
-        }
-    }
+   
 }

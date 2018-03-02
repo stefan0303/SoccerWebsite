@@ -31,7 +31,8 @@ internal class ImportCompetition : System.Web.UI.Page, IImport
 
             throw new ArgumentException("There is such Competition name!");
         }
-
+        
 
     }
+  
 }

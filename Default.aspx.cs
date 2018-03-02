@@ -14,6 +14,13 @@ public partial class _Default : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        if ("true".Equals(Request.Params["ajax_call"]))
+        {
+
+            Response.Write(Request.Params["input"]);
+            Response.End();
+        }
         using (soccerContext context = new soccerContext())
         {
             //Make the dropDown List of Counries names from Data
@@ -36,7 +43,7 @@ public partial class _Default : Page
     }
     public void OnClick_Country(object sender, EventArgs e)
     {
-
+         
         data = String.Format("{0}", Request.Form["country"]);
         if (CheckDataIsNotEmpty(this.data) == true)
         {

@@ -5,15 +5,19 @@ using System.Web.UI.WebControls;
 
 public partial class Games : System.Web.UI.Page
 {
+    string name = "Test";
+}
+    public partial class Games : System.Web.UI.Page
+{
     private string newValue;
   
 
     protected void Page_Load(object sender, EventArgs e)
     {
-      
+        
         using (soccerContext context = new soccerContext())
         {
-
+            string test = name;
             //Competitions Drop Down
             string valueCompetition = DropDownListCompetitions.SelectedValue;
             this.newValue = valueCompetition;
