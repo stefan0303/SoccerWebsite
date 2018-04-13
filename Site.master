@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster"  %>
 
 <!DOCTYPE html>
 
@@ -58,15 +58,15 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Import Data</a></li>
                         <%--<li><a runat="server" href="~/ImportData">Import Data</a></li>--%>
-                        <li><a runat="server" href="~/ImportTeams">Import Teams</a></li>
-                        <li><a runat="server" href="~/Games">Game</a></li>
-                        <li><a runat="server" href="~/SearchData">Search in Data</a></li>
+                        <li><a runat="server" href="~/ImportTeams.aspx">Import Teams</a></li>
+                        <li><a runat="server" href="~/Games.aspx">Game</a></li>
+                        <li><a runat="server" href="~/SearchData.aspx">Search in Data</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                               <%-- <li><a runat="server" href="~/Account/Register.aspx">Register</a></li>
+                                <li><a runat="server" href="~/Account/Login.aspx">Log in</a></li>--%>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>

@@ -21,7 +21,7 @@ public class CommandDispatcher
                 string awayTeam = dataArgs[2];
                 int homeTeamGoals = int.Parse(dataArgs[3]);
                 int awayTeamGoals = int.Parse(dataArgs[4]);
-                DateTime dateOfGame =       DateTime.Parse(dataArgs[5]);
+                DateTime dateOfGame = DateTime.Parse(dataArgs[5]);
 
                 IImport importGames = new ImportGames(competition, homeTeam, awayTeam,
                     homeTeamGoals, awayTeamGoals, dateOfGame);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Models;
@@ -19,6 +20,7 @@ public partial class SearchData : Page
 
             DropDownListCompetitions.DataSource = context.Competitions.OrderBy(c => c.Name).ToList();
             DropDownListCompetitions.DataTextField = "name";
+            DropDownListCompetitions.DataValueField = "ui";
 
             DropDownListCompetitions.DataBind();
             DropDownListCompetitions.Items.Insert(0, new ListItem(String.Empty, String.Empty));
@@ -28,30 +30,31 @@ public partial class SearchData : Page
         }
     }
 
-        protected void DropDownList_SelectedIndexChaged(object sender, EventArgs e)
-    {
+    //protected void DropDownList_SelectedIndexChaged(object sender, EventArgs e)
+    //{
 
-        DropDownListCompetitions.SelectedValue = newCompetitionValue;
-        DropDownListCompetitions.DataBind();
+    //    DropDownListCompetitions.SelectedValue = newCompetitionValue;
+    //    DropDownListCompetitions.DataBind();
 
-
-    }
-    public string getWhileLoopData()
+    //}
+    [WebMethod]
+    public static string getWhileLoopData(string competitionUi)
     {
         string htmlStr = "";
 
         List<Team> teams = new List<Team>();
         List<Game> games = new List<Game>();
 
+        Guid guidCompetition = new Guid(competitionUi);
         using (soccerContext context = new soccerContext())
         {
-            //List of teams in that competition
-            Competition competition = context.Competitions.FirstOrDefault(c => c.Name == newCompetitionValue);
-            if (competition != null)
-            {
-                teams = context.Teams.Where(t => t.Competition.Name == newCompetitionValue).ToList();//List of teams in this Competition
-                games = context.Games.Where(g => g.Competition_ui == competition.ui).ToList();//List of games in this competition
-            }
+          // List of teams in that competition
+           Competition competition = context.Competitions.FirstOrDefault(c => c.ui == guidCompetition);
+           if (competition != null)
+           {
+               teams = context.Teams.Where(t => t.Competition.ui == guidCompetition).ToList();//List of teams in this Competition
+               games = context.Games.Where(g => g.Competition_ui == competition.ui).ToList();//List of games in this competition
+           }
 
 
         }
@@ -73,7 +76,7 @@ public partial class SearchData : Page
         foreach (var team in teams)
         {
             teamGames.Add(team, new List<Game>());//add key Team
-            teamPoints.Add(team,new List<int>());//Add team with zero points
+            teamPoints.Add(team, new List<int>());//Add team with zero points
             teamName = team.Name;
             foreach (var game in games)
             {
@@ -83,7 +86,7 @@ public partial class SearchData : Page
                     receivedGoals += game.AwayTeamGoals;//add received Goals
                     if (game.HomeTeamGoals > game.AwayTeamGoals)//Our team is winner we give 3 points
                     {
-                        
+
                         points += 3;
                         wins += 1;
                     }
@@ -120,15 +123,15 @@ public partial class SearchData : Page
                 }
 
             }
-            teamPoints[team].Add( points);
+            teamPoints[team].Add(points);
             teamPoints[team].Add(wins);
             teamPoints[team].Add(draws);
             teamPoints[team].Add(loses);
             teamPoints[team].Add(scoredGoals);
             teamPoints[team].Add(receivedGoals);
-          
 
-            points = 0;    
+
+            points = 0;
             teamName = "";
             wins = 0;
             draws = 0;
@@ -139,20 +142,17 @@ public partial class SearchData : Page
             goalDifference = "";
         }
         int possition = 1;
-        foreach (var team in teamPoints.OrderByDescending(t=>t.Value[0]))
+        foreach (var team in teamPoints.OrderByDescending(t => t.Value[0]))
         {
             goalDifference = (team.Value[4] + "/" + team.Value[5] + "(" + (team.Value[4] - team.Value[5]) + ")").ToString();
             htmlStr += "<tr><td>" + possition + "</td><td>" + team.Key.Name + "</td><td>" + team.Value[1] +
                   "</td><td>" + team.Value[2] + "</td><td>" + team.Value[3] + "</td><td>" + goalDifference + "</td><td>" + team.Value[0] + "</td><tr>";
 
             possition++;
-           
+
 
         }
 
         return htmlStr;
     }
-   
-
-   
 }

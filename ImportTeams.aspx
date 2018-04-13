@@ -2,7 +2,44 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-   
+    <script>
+        function ImportTeam(e) {
+            let teamName = $('#team').val();
+            let competitionName = $('#MainContent_DropDownCompetitions').val()
+            let townName = $('#MainContent_DropDownTowns').val();
+            let primaryKitColour = $('#MainContent_DropDownListPrimaryKitColour').val();
+            let secondaryKitColour = $('#MainContent_DropDownListSecondaryKitColour').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/ImportTeams.aspx/ImportTeam",
+                data: JSON.stringify({
+                    teamName: teamName, competitionName: competitionName
+                    , townName: townName, primaryKitColour: primaryKitColour,
+                    secondaryKitColour: secondaryKitColour
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (responce) {
+                    let responceFromServer = responce.d;
+                    alert(responceFromServer);
+                }
+                ,
+                failure: function (response) {
+                    alert('There is problem with Team!')
+                }
+
+            })
+
+            $('#team').val('');
+            return false;
+        }
+        $(document).ready(function () {
+            $('#MainContent_importTeamID').click(ImportTeam);
+
+        });
+
+    </script>
     <div class="container">
         <div class="row-sm-5">
             <h5>Select Competition:</h5>
@@ -33,12 +70,12 @@
             <input type="text" name="team" id="team" placeholder="Type Team Name" />
         </div>
         <div>
-            <input type="submit" value="Submit" />
+
+            <asp:Button ID="importTeamID" class="btn btn-primary" runat="server" Text="Import Team" />
         </div>
 
     </div>
-    
-    <div class="row">
 
+    <div class="row">
     </div>
 </asp:Content>

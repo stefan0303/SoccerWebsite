@@ -1,9 +1,14 @@
-﻿using Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Web.UI;
 using System.Web.UI.WebControls;
+using Models;
+using System.Runtime.Serialization.Json;
+using System.Web.Script.Serialization;
 
 public partial class ImportTeams : System.Web.UI.Page
 {
@@ -27,7 +32,7 @@ public partial class ImportTeams : System.Web.UI.Page
 
         DropDownListPrimaryKitColour.DataBind();
         DropDownListSecondaryKitColour.DataBind();
-
+          
         using (soccerContext context = new soccerContext())
         {
             //Make the dropDown List from Competitions Data
@@ -43,35 +48,51 @@ public partial class ImportTeams : System.Web.UI.Page
 
             //Get The new Team Name and import it to data
         }
-        if (Request.Form.Count > 0)
-        {
-            string nameOfTeam = Request.Form["team"];
-            string[] controls = Request.Form.AllKeys.Reverse().Take(5).ToArray();
-            if (nameOfTeam != null && nameOfTeam != "")
-            {
-                string competition = Request.Form["ctl00$MainContent$DropDownCompetitions"];
-                string town = Request.Form["ctl00$MainContent$DropDownTowns"];
-                //there can be the same primary and secondary kit colour
-                string primaryKitColour = Request.Form["ctl00$MainContent$DropDownListPrimaryKitColour"];
-                string secondaryKitColour = Request.Form["ctl00$MainContent$DropDownListSecondaryKitColour"];
-                if (primaryKitColour==secondaryKitColour)
-                {
-                    throw new ArgumentException("Primary kit colour and secondary kit colour can not be the same");
-                }
-                //ToDO if Any is blanc like Select Competition or Select Town Throw Exeption
-                string[] dataArgs = new string[] { nameOfTeam, competition, town, primaryKitColour, secondaryKitColour };
+        //if (Request.Form.Count > 0)
+        //{
+        //    string nameOfTeam = Request.Form["team"];
+        //    string[] controls = Request.Form.AllKeys.Reverse().Take(5).ToArray();
+        //    if (nameOfTeam != null && nameOfTeam != "")
+        //    {
+        //        string competition = Request.Form["ctl00$MainContent$DropDownCompetitions"];
+        //        string town = Request.Form["ctl00$MainContent$DropDownTowns"];
+        //        //there can be the same primary and secondary kit colour
+        //        string primaryKitColour = Request.Form["ctl00$MainContent$DropDownListPrimaryKitColour"];
+        //        string secondaryKitColour = Request.Form["ctl00$MainContent$DropDownListSecondaryKitColour"];
+        //        if (primaryKitColour==secondaryKitColour)
+        //        {
+        //            throw new ArgumentException("Primary kit colour and secondary kit colour can not be the same");
+        //        }
+        //        //ToDO if Any is blanc like Select Competition or Select Town Throw Exeption
+        //        string[] dataArgs = new string[] { nameOfTeam, competition, town, primaryKitColour, secondaryKitColour };
                 
 
-                CommandDispatcher commandDispatcher = new CommandDispatcher("team", dataArgs);
+        //        CommandDispatcher commandDispatcher = new CommandDispatcher("team", dataArgs);
 
-            }
-            else
-            {
-                throw new ArgumentException("The Team Name is null or Empty");//ToDo this is not for here
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        throw new ArgumentException("The Team Name is null or Empty");//ToDo this is not for here
+        //    }
+        //}
     }
+    [WebMethod]
+    public static string ImportTeam(string teamName,string competitionName,
+        string townName, string primaryKitColour, string secondaryKitColour)
+    {
+        try
+        {
+            string[] dataArgs = new string[] { teamName, competitionName, townName, primaryKitColour, secondaryKitColour };
+            CommandDispatcher importTeam = new CommandDispatcher("team", dataArgs);
+            return $"{teamName} is add to data!";
+        }
+        catch (Exception)
+        {
 
+            return "There is problem with team";
+        }
+       
+    }
 
     public void GetCountriesSelectOptions()
     {

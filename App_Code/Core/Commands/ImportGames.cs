@@ -32,9 +32,12 @@ internal class ImportGames : IImport
 
         using (soccerContext context = new soccerContext())
         {
-            Competition competitionData = context.Competitions.FirstOrDefault(c => c.Name == competition);
-            Team teamHomeData = context.Teams.FirstOrDefault(t => t.Name == homeTeam);
-            Team teamAwayData = context.Teams.FirstOrDefault(t => t.Name == awayTeam);
+            Guid competitionGuid = new Guid(this.competition);
+            Guid homeTeamGuid = new Guid(this.homeTeam);
+            Guid awayTeamGuid = new Guid(this.awayTeam);
+            Competition competitionData = context.Competitions.FirstOrDefault(c => c.ui == competitionGuid);
+            Team teamHomeData = context.Teams.FirstOrDefault(t => t.ui == homeTeamGuid);
+            Team teamAwayData = context.Teams.FirstOrDefault(t => t.ui == awayTeamGuid);
 
             game.Competition_ui = competitionData.ui;
             game.HomeTeam_ui = teamHomeData.ui;
