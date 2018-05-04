@@ -20,42 +20,38 @@
                             $('.container td').remove();
                             $('.container table').append(html);
 
-                        }
-                        ,
+                        },
                         failure: function (response) {
-                            alert('There is problem with Table!')
+                            alert('There is problem with Table!');
                         }
-                    })
+                    });
                 }
                 return false;
-            })
+            });
         })
 
     </script>
 
+    <link href="CSS/Default.css" rel="stylesheet" />
+    <link href="CSS/SearchData.css" rel="stylesheet" />
     <div class="container">
-        <div class="row-sm-5">
-            <h5 id:"test">Select Competition:</h5>
-            <div class="row-sm-3">
-                <asp:DropDownList ID="DropDownListCompetitions"  runat="server" DataValueField="name" name="competitions" Width="100px">
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Select Competition:</h5>
+                <asp:DropDownList ID="DropDownListCompetitions" CssClass="textbox" runat="server" DataValueField="name" name="competitions" Width="150px">
                 </asp:DropDownList>
-            </div>
-       
                 <table>
-                    <tr id:"table" style="background-color: #004080; color: White;">
-                       <th id:"possition">Posssition</th>
-                        <th>Team</th>                       
+                    <tr class="table" style="background-color: #004080; color: White;">
+                        <th>Posssition</th>
+                        <th>Team</th>
                         <th>Wins</th>
                         <th>Draws</th>
                         <th>Loses</th>
                         <th>Goal Difference</th>
                         <th>Points</th>
                     </tr>
-                   
-               <%-- <%=getWhileLoopData()%>--%>
                 </table>
-
-
+            </div>
         </div>
     </div>
 </asp:Content>

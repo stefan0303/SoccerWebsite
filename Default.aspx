@@ -1,13 +1,10 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="Default.aspx.cs" Inherits="_Default"  %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-      
 
-        //EnableEventValidation="false"!!! is this Ok
         $(document).ready(function () {
             //Drop Down Menu Countries
-            //WORKING
             dropDownCompetititons();
             function dropDownCompetititons(e) {
 
@@ -17,18 +14,13 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
-
-                        let responce = data.d;
-                        // $("#MainContent_DropDownCountry option").remove();
                         let select = $("#MainContent_DropDownCountry");
                         select.children().remove();
                         if (data.d) {
                             $(data.d).each(function (index, item) {
                                 select.append('<option val="' + item.Text + '">' + item.Text + '</option>');
-                                //select.append($("<option>").val(item.Value).text(item.Text));
                             });
                         }
-
                     },
                     failure: function () {
                         alert("Failed!");
@@ -47,59 +39,59 @@
                 let comp = $("#<%=inputCompetition.ClientID%>").val();
 
 
-                 $.ajax({
-                     type: "POST",
-                     url: "/Default.aspx/Competition",
-                     data: '{competitionName: "' + $("#<%=inputCompetition.ClientID%>").val() + '" }',
-                     contentType: "application/json; charset=utf-8",
-                     dataType: "json",
-                     success: function (responce) {
-                         let responceFromServer = responce.d;
-                         alert(responceFromServer);
-                      
-                         $('#MainContent_inputCompetition').val('');
-                     }
-                     ,
-                     failure: function (response) {
-                         alert('There is problem with competition!')
-                     }
-                 });
+                $.ajax({
+                    type: "POST",
+                    url: "/Default.aspx/Competition",
+                    data: '{competitionName: "' + $("#<%=inputCompetition.ClientID%>").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (responce) {
+                        let responceFromServer = responce.d;
+                        alert(responceFromServer);
 
-             }
-                
+                        $('#MainContent_inputCompetition').val('');
+                    }
+                    ,
+                    failure: function (response) {
+                        alert('There is problem with competition!');
+                    }
+                });
+
+            }
+
             $('#MainContent_competitionID').click(addCompetition);
             function addCountry() {
                 $.ajax({
                     type: "POST",
                     url: "/Default.aspx/Country",
                     //data: '{countryName: "' + $("#<%=inputCountry.ClientID%>").val() + '" }',
-                    data: JSON.stringify({countryName: $("#<%=inputCountry.ClientID%>").val()}),
-                     contentType: "application/json; charset=utf-8",
-                     dataType: "json",
-                     success: function (responce) {
-            
-                         let responceFromServer = responce.d;
-                         alert(responceFromServer);
-                         dropDownCompetititons();
-                         $('#MainContent_inputCountry').val('');
-                     }
-                      ,
-                     failure: function (response) {
-                         alert('There is problem with country!')
-                     }
+                    data: JSON.stringify({ countryName: $("#<%=inputCountry.ClientID%>").val() }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (responce) {
+
+                        let responceFromServer = responce.d;
+                        alert(responceFromServer);
+                        dropDownCompetititons();
+                        $('#MainContent_inputCountry').val('');
+                    }
+                    ,
+                    failure: function (response) {
+                        alert('There is problem with country!');
+                    }
                 });
                 return false;
             }
             $('#MainContent_countryId').click(addCountry);
-           
+
             function addTown() {
-         
+
                 let townName = $("#<%=textBoxTownID.ClientID%>").val();
                 let country = $("#<%=DropDownCountry.ClientID%>").val();
                 $.ajax({
                     type: "POST",
                     url: "/Default.aspx/Town",
-                    data: JSON.stringify({ townName: townName, countryName:country }),
+                    data: JSON.stringify({ townName: townName, countryName: country }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (responce) {
@@ -107,10 +99,10 @@
                         $('#MainContent_textBoxTownID').val('');
                     },
                     failure: function (responce) {
-                        alert('There is problem with Town!')
+                        alert('There is problem with Town!');
                     }
                 })
-                
+
                 return false;
             }
             $('#MainContent_townId').click(addTown);
@@ -118,31 +110,44 @@
         });
 
     </script>
-  
-    <div class="data">
 
-        <div class="row-sm-4">
-            <h5>Import Competition:</h5>
-            <asp:TextBox ID="inputCompetition" runat="server"></asp:TextBox>
-            <asp:Button ID="competitionID" class="btn btn-primary" runat="server" Text="Submit Competition" />
+
+    <link href="CSS/Default.css" rel="stylesheet" />
+    <div class="container" >
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Import Competition:</h5>
+        
+                <asp:TextBox ID="inputCompetition" CssClass="textbox"  placeholder="Competition name"  runat="server"></asp:TextBox>
+                <asp:Button ID="competitionID" class="btn btn-primary" runat="server" Text="Submit Competition" />
+            </div>
+
         </div>
-        <div class="row-sm-4">
-            <h5>Import Country:</h5>
-             <asp:TextBox ID="inputCountry" runat="server"></asp:TextBox>
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Import Country:</h5>
+                <asp:TextBox ID="inputCountry" CssClass="textbox"  placeholder="Country name" runat="server" ></asp:TextBox>
 
-            <asp:Button ID="countryId" class="btn btn-primary" runat="server" Text="Submit Country"/>
+                <asp:Button ID="countryId" class="btn btn-primary" runat="server" Text="Submit Country" />
+            </div>
         </div>
-        <div class="row-sm-4">
-            <h5>Import Town:</h5>
-            <h6>Select Country from list:</h6>
-            <asp:DropDownList ID="DropDownCountry" name="countryInput" runat="server" Width="100px">
-            </asp:DropDownList>
-
-            <asp:TextBox ID="textBoxTownID" runat="server"></asp:TextBox>
-            <asp:Button ID="townId" class="btn btn-primary" runat="server" Text="Submit Town"/>
+        <div class="row">
+            <div class="col-xs-12" id="list">
+                <h5>Select Country from list:</h5>
+                <asp:DropDownList ID="DropDownCountry" CssClass="textbox"  name="countryInput" runat="server" Width="100px">
+                </asp:DropDownList>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Import Town:</h5>
+                <asp:TextBox ID="textBoxTownID" CssClass="textbox"  placeholder="Town name" runat="server"></asp:TextBox>
+                <asp:Button ID="townId" class="btn btn-primary" runat="server" Text="Submit Town" />
+            </div>
         </div>
 
     </div>
-   
+
+
 </asp:Content>
 

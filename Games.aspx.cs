@@ -61,30 +61,6 @@ public partial class Games : System.Web.UI.Page
 
         }
 
-        //string[] controls = Request.Form.AllKeys.Reverse().Take(50).ToArray();
-        //if (Request.Form.Count > 0 && !controls.Any(c => c == "") && controls[0] == "submitGames")
-        //{
-        //    string competition = Request.Form["ctl00$MainContent$DropDownListCompetitions"];
-          
-
-        //    string homeTeam = Request.Form["ctl00$MainContent$DropDownListHomeTeam"];
-        //    string awayTeam = Request.Form["ctl00$MainContent$DropDownListAwayTeam"];
-        //    if (homeTeam==awayTeam)
-        //    {
-        //        throw new ArgumentException("Home and Away team cannot have same name!");
-             
-        //    }
-        //    string homeTeamGoals = Request.Form["ctl00$MainContent$DropDownListHomeTeamGoals"];
-        //    string awayTeamGoals = Request.Form["ctl00$MainContent$DropDownListAwayTeamGoals"];
-        //    if (homeTeamGoals==""||awayTeamGoals=="")
-        //    {
-        //        throw new ArgumentException("Home team and Away team goals can not be empty!");
-        //    }
-        //    string dateOfGame = Request.Form["ctl00$MainContent$TxtDob"];          
-
-        //    string[] dataArgs = new string[] { competition, homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, dateOfGame };
-        //    CommandDispatcher commandDispatcher = new CommandDispatcher("game", dataArgs);
-        //}
     }
     protected void DropDownList_SelectedIndexChaged(object sender, EventArgs e)
     {
@@ -137,6 +113,7 @@ public partial class Games : System.Web.UI.Page
         using (soccerContext context = new soccerContext())
         {
             Dictionary<Guid, string> teams = context.Teams.Where(t=>t.Competition.ui == new Guid(competitionUi)).Select(t => new { t.ui, t.Name }).ToDictionary(t => t.ui, t => t.Name);
+            teamsDropDownOptionsMarkUp.Append(@"<option value=""""></option>");
             foreach (var team in teams)
             {
                   teamsDropDownOptionsMarkUp.Append($"<option value=\"{team.Key}\">{team.Value}</option>");

@@ -26,7 +26,7 @@
                 }
                 ,
                 failure: function (response) {
-                    alert('There is problem with Team!')
+                    alert('There is problem with Team!');
                 }
 
             })
@@ -40,42 +40,44 @@
         });
 
     </script>
+    <link href="CSS/Default.css" rel="stylesheet" runat="server"/>
+    <link href="CSS/ImportTeams.css" rel="stylesheet" runat="server" />
     <div class="container">
-        <div class="row-sm-5">
-            <h5>Select Competition:</h5>
-            <div class="div">
-                <asp:DropDownList ID="DropDownCompetitions" name="competitionName" runat="server" Width="100px">
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Select Competition:</h5>
+                <asp:DropDownList ID="DropDownCompetitions" name="competitionName" CssClass="textbox" runat="server" Width="100px">
                 </asp:DropDownList>
             </div>
-            <h5>Select Town:</h5>
-            <div class="div">
-                <asp:DropDownList ID="DropDownTowns" name="townName" runat="server" Width="100px">
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Select Town:</h5>
+                <asp:DropDownList ID="DropDownTowns" name="townName" CssClass="textbox" runat="server" Width="100px">
                 </asp:DropDownList>
             </div>
-
         </div>
-        <div class="row-sm-4">
-            <h5>Team Primary Kit Colour:</h5>
-            <asp:DropDownList ID="DropDownListPrimaryKitColour" name="primaryColour" runat="server" Width="100px">
-            </asp:DropDownList>
+       
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Team Primary Kit Colour:</h5>
+                <asp:DropDownList ID="DropDownListPrimaryKitColour" name="primaryColour" runat="server" CssClass="textbox" Width="100px">
+                </asp:DropDownList>
+            </div>
         </div>
-        <div class="row-sm-4">
-            <h5>Team Secondary Kit Colour</h5>
-            <asp:DropDownList ID="DropDownListSecondaryKitColour" name="secondaryColour" runat="server" Width="100px">
-            </asp:DropDownList>
-
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Team Secondary Kit Colour</h5>
+                <asp:DropDownList ID="DropDownListSecondaryKitColour" CssClass="textbox" name="secondaryColour" runat="server" Width="100px">
+                </asp:DropDownList>
+            </div>
         </div>
-        <div class="row-sm-3">
-            <h5>Team Name:</h5>
-            <input type="text" name="team" id="team" placeholder="Type Team Name" />
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Team Name:</h5>
+                <input type="text" name="team" id="team" class="textbox" placeholder="Type Team Name" />
+                <asp:Button ID="importTeamID" class="btn btn-primary" runat="server"  Text="Import Team" />
+            </div>
         </div>
-        <div>
-
-            <asp:Button ID="importTeamID" class="btn btn-primary" runat="server" Text="Import Team" />
-        </div>
-
-    </div>
-
-    <div class="row">
     </div>
 </asp:Content>

@@ -13,7 +13,6 @@ public partial class SearchData : Page
     {
         using (soccerContext context = new soccerContext())
         {
-
             //Competitions Drop Down
             string valueCompetition = DropDownListCompetitions.SelectedValue;
             this.newCompetitionValue = valueCompetition;
@@ -24,19 +23,9 @@ public partial class SearchData : Page
 
             DropDownListCompetitions.DataBind();
             DropDownListCompetitions.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-
-
-
         }
     }
 
-    //protected void DropDownList_SelectedIndexChaged(object sender, EventArgs e)
-    //{
-
-    //    DropDownListCompetitions.SelectedValue = newCompetitionValue;
-    //    DropDownListCompetitions.DataBind();
-
-    //}
     [WebMethod]
     public static string getWhileLoopData(string competitionUi)
     {
@@ -55,10 +44,7 @@ public partial class SearchData : Page
                teams = context.Teams.Where(t => t.Competition.ui == guidCompetition).ToList();//List of teams in this Competition
                games = context.Games.Where(g => g.Competition_ui == competition.ui).ToList();//List of games in this competition
            }
-
-
         }
-
         Dictionary<Team, List<Game>> teamGames = new Dictionary<Team, List<Game>>();
         Dictionary<Team, List<int>> teamPoints = new Dictionary<Team, List<int>>();
 
@@ -71,7 +57,6 @@ public partial class SearchData : Page
         int scoredGoals = 0;
         int receivedGoals = 0;
         string goalDifference = "";
-
 
         foreach (var team in teams)
         {
@@ -119,9 +104,7 @@ public partial class SearchData : Page
                     {
                         loses += 1;
                     }
-
                 }
-
             }
             teamPoints[team].Add(points);
             teamPoints[team].Add(wins);
@@ -130,16 +113,13 @@ public partial class SearchData : Page
             teamPoints[team].Add(scoredGoals);
             teamPoints[team].Add(receivedGoals);
 
-
             points = 0;
-            teamName = "";
             wins = 0;
             draws = 0;
             loses = 0;
 
             scoredGoals = 0;
             receivedGoals = 0;
-            goalDifference = "";
         }
         int possition = 1;
         foreach (var team in teamPoints.OrderByDescending(t => t.Value[0]))
@@ -149,10 +129,7 @@ public partial class SearchData : Page
                   "</td><td>" + team.Value[2] + "</td><td>" + team.Value[3] + "</td><td>" + goalDifference + "</td><td>" + team.Value[0] + "</td><tr>";
 
             possition++;
-
-
         }
-
         return htmlStr;
     }
 }

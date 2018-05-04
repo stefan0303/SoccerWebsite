@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Models;
-using System.Runtime.Serialization.Json;
-using System.Web.Script.Serialization;
 
 public partial class _Default : Page
 {
@@ -17,26 +12,11 @@ public partial class _Default : Page
     private CommandDispatcher service;
     private static string checkData;
 
-
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
         {
-            //if ("true".Equals(Request.Params["ajax_call"]))
-            //{
-
-            //    Response.Write(Request.Params["input"]);
-            //    Response.End();
-            //}
-            //using (soccerContext context = new soccerContext())
-            //{
-            //    // Make the dropDown List of Counries names from Data
-            //    DropDownCountry.DataSource = context.Countries.OrderBy(c => c.Name).ToList();
-            //    DropDownCountry.DataTextField = "name";
-            //    DropDownCountry.DataBind();
-
-            //}
-        
         }
 
     }
@@ -62,7 +42,7 @@ public partial class _Default : Page
        
     }
    
-    [System.Web.Services.WebMethod]
+    [WebMethod]
 
     public static string Competition(string competitionName)
     {
@@ -95,7 +75,7 @@ public partial class _Default : Page
 
 
     }
-    [System.Web.Services.WebMethod]
+    [WebMethod]
     public static string Country(string countryName)
     {
         checkData = CheckDataIsNotEmpty(countryName, "Country");
@@ -128,7 +108,7 @@ public partial class _Default : Page
     
        
     }
-    [System.Web.Services.WebMethod]
+    [WebMethod]
     public static string Town(string townName, string countryName)
     {
         checkData = CheckDataIsNotEmpty(townName, "Town");
@@ -174,3 +154,5 @@ public partial class _Default : Page
         return "Ok";
     }
 }
+
+
