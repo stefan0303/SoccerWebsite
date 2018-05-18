@@ -1,0 +1,39 @@
+﻿body {
+   
+    background-color: #add8e6;
+
+}
+.container {
+    text-align: center;
+}
+
+h5 {
+    display: inline-block;
+    text-align: left;
+    font-weight: bold;
+ 
+}
+.col-xs-12{
+
+    padding-top: 15px
+}
+#list {
+    padding-right: 150px; 
+}
+#inputCountry {
+    border-radius: 25%;
+}
+.textbox {
+    border-radius: 10px;
+    border: 1px solid black;  
+    background: #7fffd4;
+    
+}
+
+.siteContainer {
+    margin-top: 30px;
+}
+
+.inline-input input{
+    display: inline-block;
+}

@@ -1,0 +1,19 @@
+﻿body {
+    background-color:beige;
+}
+
+.col-xs-12 {
+    text-align: start;
+    margin-left: 35%;
+}
+
+.textbox {
+    background-color:bisque;
+}
+#submit {
+    background-color:aquamarine;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+    width: 130px;
+}

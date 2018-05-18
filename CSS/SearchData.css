@@ -1,0 +1,12 @@
+﻿body {
+    background-color:beige;
+}
+
+.col-xs-12 {
+    text-align: start;
+    margin-left: 35%;
+}
+
+table, th {
+    font-weight: bold;
+}
