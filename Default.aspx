@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="Default.aspx.cs" Inherits="Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script>
@@ -113,38 +113,38 @@
 
 
     <link href="CSS/Default.css" rel="stylesheet" />
-    <div class="container" >
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Import Competition:</h5>
-        
-                <asp:TextBox ID="inputCompetition" CssClass="textbox"  placeholder="Competition name"  runat="server"></asp:TextBox>
+    <div class="container siteContainer">
+        <div class="form-group row">
+            <div class="col-md-2"></div>
+            <label class="col-xs-12 col-md-2 col-form-label" for="MainContent_inputCompetition">Import Competition:</label>
+            <div class="col-xs-12 col-md-6 text-left inline-input">
+                <asp:TextBox ID="inputCompetition" CssClass="form-control" placeholder="Competition name" runat="server"></asp:TextBox>
                 <asp:Button ID="competitionID" class="btn btn-primary" runat="server" Text="Submit Competition" />
             </div>
-
+            <div class="col-md-2"></div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Import Country:</h5>
-                <asp:TextBox ID="inputCountry" CssClass="textbox"  placeholder="Country name" runat="server" ></asp:TextBox>
-
-                <asp:Button ID="countryId" class="btn btn-primary" runat="server" Text="Submit Country" />
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Import Country:</h5>
+            <asp:TextBox ID="inputCountry" CssClass="textbox" placeholder="Country name" runat="server"></asp:TextBox>
+            <asp:Button ID="countryId" class="btn btn-primary" runat="server" Text="Submit Country" />
         </div>
-        <div class="row">
-            <div class="col-xs-12" id="list">
-                <h5>Select Country from list:</h5>
-                <asp:DropDownList ID="DropDownCountry" CssClass="textbox"  name="countryInput" runat="server" Width="100px">
-                </asp:DropDownList>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" id="list">
+            <h5>Select Country from list:</h5>
+            <asp:DropDownList ID="DropDownCountry" CssClass="textbox" name="countryInput" runat="server" Width="100px">
+            </asp:DropDownList>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Import Town:</h5>
-                <asp:TextBox ID="textBoxTownID" CssClass="textbox"  placeholder="Town name" runat="server"></asp:TextBox>
-                <asp:Button ID="townId" class="btn btn-primary" runat="server" Text="Submit Town" />
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Import Town:</h5>
+            <asp:TextBox ID="textBoxTownID" CssClass="textbox" placeholder="Town name" runat="server"></asp:TextBox>
+            <asp:Button ID="townId" class="btn btn-primary" runat="server" Text="Submit Town" />
         </div>
+    </div>
 
     </div>
 

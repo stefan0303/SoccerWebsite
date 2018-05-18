@@ -5,7 +5,7 @@ using System.Web.Services;
 using System.Web.UI;
 using Models;
 
-public partial class _Default : Page
+public partial class Default : Page
 {
     private string data;
     private string[] dataArgs;
